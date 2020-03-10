@@ -1,8 +1,8 @@
 import com.sun.corba.se.impl.orbutil.graph.Graph;
 
+package com.company;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class JPanelExample extends JPanel {
     Building[] buildingArr = new Building[5];
@@ -11,15 +11,40 @@ public class JPanelExample extends JPanel {
     private Building b3 = new Building(320, 280, 2, 8);
     private Building b4 = new Building(400, 160, 3, 14);
     private Building b5 = new Building(500, 220, 2, 11);
+    private UFO ufo1 = new UFO(500, 100, this);
+
+    private void move(){
+        ufo1.move();
+    }
 
     public void paint(Graphics g){
+        super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
         b1.paint(g2d);
         b2.paint(g2d);
         b3.paint(g2d);
         b4.paint(g2d);
         b5.paint(g2d);
-        g2d.setColor(Color.GRAY);
+        ufo1.paint(g2d);
+        g2d.setColor(Color.LIGHT_GRAY);
         g2d.fillRect(0, 441, 1020, 600);
     }
+
+    public static void main(String[] args) throws InterruptedException {
+        JFrame frame = new JFrame("GoodManMcGee");
+        frame.setSize(1020,640);
+        JPanelExample panel = new JPanelExample();
+        frame.add(panel);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        while(true){
+            panel.move();
+            panel.repaint();
+            Thread.sleep(1);
+        }
+    }
+
 }
