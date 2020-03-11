@@ -1,6 +1,3 @@
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-
-package com.company;
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,6 +19,8 @@ public class JPanelExample extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setColor(new Color(0,0,153));
+        g2d.fillRect(0,0,1020, 600);
         b1.paint(g2d);
         b2.paint(g2d);
         b3.paint(g2d);
@@ -43,7 +42,7 @@ public class JPanelExample extends JPanel {
         while(true){
             panel.move();
             panel.repaint();
-            Thread.sleep(1);
+            Thread.sleep(10);
         }
     }
 
