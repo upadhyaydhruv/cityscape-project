@@ -9,8 +9,8 @@ public class JPanelExample extends JPanel {
     private Building b3 = new Building(320, 280, 2, 8);
     private Building b4 = new Building(400, 160, 3, 14);
     private Building b5 = new Building(500, 220, 2, 11);
-
     private UFO[] list = new UFO[5];
+    private Car car = new Car(300, 250);
 
     public JPanelExample(){
         for (int i=0; i<list.length; i++){
@@ -19,6 +19,7 @@ public class JPanelExample extends JPanel {
     }
 
     private void move(){
+        car.move();
         for (int i=0; i<list.length; i++)
             for(int j=i+1; j<list.length; j++)
                 list[i].collision(list[j]);
@@ -39,8 +40,10 @@ public class JPanelExample extends JPanel {
         b4.paint(g2d);
         b5.paint(g2d);
         for (UFO ufo:list) ufo.paint(g2d);
+
         g2d.setColor(Color.LIGHT_GRAY);
         g2d.fillRect(0, 441, 1020, 600);
+        car.paint(g2d);
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -57,5 +60,4 @@ public class JPanelExample extends JPanel {
             Thread.sleep(10);
         }
     }
-
 }
