@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Car {
     private BufferedImage img = null;
-    int w, h;
+    private int w, h;
     private static int xVel = -5;
     private static int yVel = 0;
     private static int x, y;
