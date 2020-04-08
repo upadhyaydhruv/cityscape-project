@@ -1,5 +1,3 @@
-package com.company;
-
 import javax.imageio.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,10 +6,11 @@ import java.io.*;
 public class Car {
     private BufferedImage img = null;
     int w, h;
-    private int xVel = -5;
-    private int x, y;
+    private static int xVel = -5;
+    private static int yVel = 0;
+    private static int x, y;
 
-    public Car(int x, int y) {
+    public Car(int xIn, int yIn) {
         try {
             this.img = ImageIO.read(new File("D:/Dhruv/car.png"));
             w = img.getWidth();
@@ -19,8 +18,24 @@ public class Car {
         } catch (IOException e){
             System.out.println("res\\GoodManMcGee");
         }
-        this.x = x;
-        this.y = y;
+        x = xIn;
+        y = yIn;
+    }
+
+    public static int getX(){
+        return x;
+    }
+
+    public static int getY(){
+        return y;
+    }
+
+    public static void setxVel(int newXVel){
+        xVel = newXVel;
+    }
+
+    public static void setyVel(int newYVel){
+        yVel = newYVel;
     }
 
     public BufferedImage horizontalflip(BufferedImage img) {
@@ -42,11 +57,11 @@ public class Car {
             xVel = 5;
             this.img = horizontalflip(img);
         }
-        this.x+=xVel;
+        y+=yVel;
+        x+=xVel;
     }
 
     public void paint(Graphics2D g2d){
         g2d.drawImage(img, x,  y, null);
     }
-
 }
