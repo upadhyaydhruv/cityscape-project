@@ -9,7 +9,7 @@ public class JPanelExample extends JPanel {
     private Building b3 = new Building(320, 280, 2, 8);
     private Building b4 = new Building(400, 160, 3, 14);
     private Building b5 = new Building(500, 220, 2, 11);
-    private UFO[] list = new UFO[4];
+    private UFO[] list = new UFO[5];
     private Car car = new Car(300, 250);
     private UFO special;
 
@@ -17,7 +17,7 @@ public class JPanelExample extends JPanel {
         for (int i=0; i<list.length-1; i++){
             list[i] = new UFO((i+1)*50, (i+1)*20, (int) (Math.random()*2)+1, (int) (Math.random()*2)+1, false, this);
         }
-        list[list.length-1] = new UFO(100,50, 1, 1, true, this);
+        list[list.length-1] = new UFO(500,50, 1, 1, true, this);
         special = list[list.length-1];
         addKeyListener(new KeyListener(){
             @Override
