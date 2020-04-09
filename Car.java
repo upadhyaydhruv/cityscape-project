@@ -9,6 +9,8 @@ public class Car {
     private static int xVel = -5;
     private static int yVel = 0;
     private static int x, y;
+    private static boolean remove = false;
+    private static boolean right = false;
 
     public Car(int xIn, int yIn) {
         try {
@@ -30,6 +32,8 @@ public class Car {
         return y;
     }
 
+    public static boolean getRight(){return right;}
+
     public static void setxVel(int newXVel){
         xVel = newXVel;
     }
@@ -38,7 +42,7 @@ public class Car {
         yVel = newYVel;
     }
 
-    public BufferedImage horizontalflip(BufferedImage img) {
+    public BufferedImage horizontalFlip(BufferedImage img) {
         int w = img.getWidth();
         int h = img.getHeight();
         BufferedImage newImg = new BufferedImage(w, h, img.getType());
@@ -48,20 +52,31 @@ public class Car {
         return newImg;
     }
 
+    public static void removeCar(){
+        remove = true;
+    }
+
     public void move(){
-        if (xVel>0 && this.x>=720) {
+        if (xVel!=0&&xVel>0 && x>=720) {
             xVel = -5;
-            this.img = horizontalflip(img);
+            this.img = horizontalFlip(img);
+            right = !right;
         }
-        else if (xVel<0 && this.x<=0){
+        else if (xVel!=0&&xVel<0 && x<=0){
             xVel = 5;
-            this.img = horizontalflip(img);
+            this.img = horizontalFlip(img);
+            right = !right;
         }
         y+=yVel;
         x+=xVel;
     }
 
     public void paint(Graphics2D g2d){
-        g2d.drawImage(img, x,  y, null);
+        if (remove){
+            g2d.drawImage(img, 1000, 1000, null);
+        }
+        else{
+            g2d.drawImage(img, x,  y, null);
+        }
     }
 }
